@@ -8,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.DataVisualization.Charting;
 
 namespace BatteryManager
 {
@@ -16,6 +17,7 @@ namespace BatteryManager
         public Form2()
         {
             InitializeComponent();
+
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
