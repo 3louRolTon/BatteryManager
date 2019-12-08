@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace BatteryManager
     public partial class Form1 : Form
     {
         PowerStatus power = SystemInformation.PowerStatus;
+        private PowerLineStatus lastStatus = SystemInformation.PowerStatus.PowerLineStatus;
 
         public Form1()
         {
@@ -23,13 +25,72 @@ namespace BatteryManager
 
             this.ShowInTaskbar = false;
 
-            SystemEvents.PowerModeChanged += new PowerModeChangedEventHandler(SystemEvents_PowerModeChanged);
+            SystemEvents.PowerModeChanged += OnPowerModeChanged;
 
         }
 
-        void SystemEvents_PowerModeChanged(object sender, PowerModeChangedEventArgs e)
+        private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
-            label1.Text = ((int)(power.BatteryLifePercent * 100)).ToString();
+            var newStatus = SystemInformation.PowerStatus.PowerLineStatus;
+
+            if (e.Mode == PowerModes.StatusChange && newStatus != lastStatus)
+            {
+
+                switch (newStatus)
+                {
+                    case PowerLineStatus.Online:
+                        DisablePowerSaving();
+
+                        lastStatus = newStatus;
+                        break;
+                    case PowerLineStatus.Offline:
+                        EnablePowerSaving();
+
+                        lastStatus = newStatus;
+                        break;
+                    case PowerLineStatus.Unknown:
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+            }
+        }
+
+        private void EnablePowerSaving()
+        {
+            RunCmdCommand("powercfg /s a1841308-3541-4fab-bc81-f71556f20b4a");
+
+        }
+
+        private void DisablePowerSaving()
+        {
+            RunCmdCommand("powercfg /s 8c5e7fda-e8bf-4a96-9a85-a6e23a8c635c");
+        }
+        
+        private void NormalPowerSaving()
+        {
+            RunCmdCommand("powercfg /s 381b4222-f694-41f0-9685-ff5bb260df2e");
+        }
+
+        private void RunCmdCommand(string command)
+        {
+            var cmd = new Process
+            {
+                StartInfo =
+                {
+                    FileName = "cmd.exe",
+                    RedirectStandardInput = true,
+                    RedirectStandardOutput = true,
+                    CreateNoWindow = true,
+                    UseShellExecute = false
+                }
+            };
+            cmd.Start();
+
+            cmd.StandardInput.WriteLine(command);
+            cmd.StandardInput.Flush();
+            cmd.StandardInput.Close();
+            cmd.WaitForExit();
         }
 
         private void TrayMenuContext()
@@ -90,6 +151,16 @@ namespace BatteryManager
             Controller.form3.Show();
 
             this.Hide();
+        }
+
+        void Resfresh()
+        {
+
+        }
+
+        private void RefreshTimer_Tick(object sender, EventArgs e)
+        {
+            this.notifyIcon1.Text = "Уровень заряда батареи " + ((int)(power.BatteryLifePercent * 100)).ToString() +"%";
         }
     }
 }

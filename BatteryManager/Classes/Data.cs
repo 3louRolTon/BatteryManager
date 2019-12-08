@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 namespace BatteryManager.Classes
 {
     [Serializable]
-    class Settings
+    class Data
     {
-        bool autoLoad;
-        bool autoChangePlan;
-        bool autoChangeLowLevelPlan;
+
     }
 }

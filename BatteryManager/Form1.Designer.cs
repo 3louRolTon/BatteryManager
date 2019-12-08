@@ -33,19 +33,20 @@
             this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.Exit_button = new System.Windows.Forms.Button();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.RefreshTimer = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.GlavToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TableToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SettingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.AboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ChargeLevel = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // notifyIcon1
             // 
             this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "notifyIcon1";
+            this.notifyIcon1.Text = "???";
             this.notifyIcon1.Visible = true;
             // 
             // label1
@@ -53,9 +54,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(30, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.Size = new System.Drawing.Size(114, 17);
             this.label1.TabIndex = 0;
-            this.label1.Text = "label1";
+            this.label1.Text = "Уровень заряда";
             // 
             // Exit_button
             // 
@@ -68,9 +69,11 @@
             this.Exit_button.UseVisualStyleBackColor = true;
             this.Exit_button.Click += new System.EventHandler(this.Exit_button_Click);
             // 
-            // timer1
+            // RefreshTimer
             // 
-            this.timer1.Interval = 1000;
+            this.RefreshTimer.Enabled = true;
+            this.RefreshTimer.Interval = 1000;
+            this.RefreshTimer.Tick += new System.EventHandler(this.RefreshTimer_Tick);
             // 
             // menuStrip1
             // 
@@ -113,12 +116,22 @@
             this.AboutToolStripMenuItem.Size = new System.Drawing.Size(116, 24);
             this.AboutToolStripMenuItem.Text = "О программе";
             // 
+            // ChargeLevel
+            // 
+            this.ChargeLevel.AutoSize = true;
+            this.ChargeLevel.Location = new System.Drawing.Point(151, 60);
+            this.ChargeLevel.Name = "ChargeLevel";
+            this.ChargeLevel.Size = new System.Drawing.Size(32, 17);
+            this.ChargeLevel.TabIndex = 3;
+            this.ChargeLevel.Text = "???";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.ControlBox = false;
+            this.Controls.Add(this.ChargeLevel);
             this.Controls.Add(this.Exit_button);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
@@ -140,12 +153,13 @@
         private System.Windows.Forms.NotifyIcon notifyIcon1;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button Exit_button;
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer RefreshTimer;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem GlavToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem TableToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem SettingsToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem AboutToolStripMenuItem;
+        private System.Windows.Forms.Label ChargeLevel;
     }
 }
 
