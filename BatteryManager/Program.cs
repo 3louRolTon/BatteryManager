@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BatteryManager.Classes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -16,7 +17,8 @@ namespace BatteryManager
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Controller.form1 = new Form1();
+            Application.Run(Controller.form1);
         }
     }
 }

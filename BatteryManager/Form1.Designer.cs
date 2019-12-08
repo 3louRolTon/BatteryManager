@@ -51,7 +51,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(212, 129);
+            this.label1.Location = new System.Drawing.Point(30, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(46, 17);
             this.label1.TabIndex = 0;
@@ -60,7 +60,7 @@
             // Exit_button
             // 
             this.Exit_button.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.Exit_button.Location = new System.Drawing.Point(757, 12);
+            this.Exit_button.Location = new System.Drawing.Point(757, 0);
             this.Exit_button.Name = "Exit_button";
             this.Exit_button.Size = new System.Drawing.Size(31, 23);
             this.Exit_button.TabIndex = 1;
@@ -88,22 +88,24 @@
             // 
             // GlavToolStripMenuItem
             // 
+            this.GlavToolStripMenuItem.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.GlavToolStripMenuItem.Name = "GlavToolStripMenuItem";
             this.GlavToolStripMenuItem.Size = new System.Drawing.Size(78, 24);
             this.GlavToolStripMenuItem.Text = "Главное";
-            this.GlavToolStripMenuItem.Click += new System.EventHandler(this.GlavToolStripMenuItem_Click);
             // 
             // TableToolStripMenuItem
             // 
             this.TableToolStripMenuItem.Name = "TableToolStripMenuItem";
             this.TableToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
             this.TableToolStripMenuItem.Text = "Таблица";
+            this.TableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
             // 
             // SettingsToolStripMenuItem
             // 
             this.SettingsToolStripMenuItem.Name = "SettingsToolStripMenuItem";
             this.SettingsToolStripMenuItem.Size = new System.Drawing.Size(96, 24);
             this.SettingsToolStripMenuItem.Text = "Настройки";
+            this.SettingsToolStripMenuItem.Click += new System.EventHandler(this.SettingsToolStripMenuItem_Click);
             // 
             // AboutToolStripMenuItem
             // 
@@ -122,7 +124,9 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Battery Manager";
+            this.TopMost = true;
             this.WindowState = System.Windows.Forms.FormWindowState.Minimized;
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();

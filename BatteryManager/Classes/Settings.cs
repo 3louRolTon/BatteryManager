@@ -8,5 +8,6 @@ namespace BatteryManager.Classes
 {
     class Settings
     {
+
     }
 }

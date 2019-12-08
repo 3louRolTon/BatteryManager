@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace BatteryManager
 {
-    public partial class Form2 : Form
+    public partial class Form3 : Form
     {
-        public Form2()
+        public Form3()
         {
             InitializeComponent();
         }
@@ -23,7 +23,7 @@ namespace BatteryManager
             this.Hide();
         }
 
-        private void GlavToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ClavToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (Controller.form1 == null)
             {
@@ -36,15 +36,15 @@ namespace BatteryManager
             this.Hide();
         }
 
-        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (Controller.form3 == null)
+            if (Controller.form2 == null)
             {
-                Controller.form3 = new Form3();
+                Controller.form2 = new Form2();
             }
-            Controller.ActiveForm = 3;
-            Controller.form3.Location = this.Location;
-            Controller.form3.Show();
+            Controller.ActiveForm = 2;
+            Controller.form2.Location = this.Location;
+            Controller.form2.Show();
 
             this.Hide();
         }

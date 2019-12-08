@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace BatteryManager.Classes
 {
-    class Controller
+    static public class Controller
     {
+        static public int ActiveForm = 1;
+        static public Form1 form1;
+        static public Form2 form2;
+        static public Form3 form3;
     }
 }

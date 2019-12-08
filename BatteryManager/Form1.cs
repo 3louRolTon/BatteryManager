@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using BatteryManager.Classes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -46,7 +47,18 @@ namespace BatteryManager
 
         void MenuShow_Click(object sender, EventArgs e)
         {
-            this.Show();
+            switch (Controller.ActiveForm)
+            {
+                case 1:
+                    Controller.form1.Show();
+                    break;
+                case 2:
+                    Controller.form2.Show();
+                    break;
+                case 3:
+                    Controller.form3.Show();
+                    break;
+            }
         }
 
         private void Exit_button_Click(object sender, EventArgs e)
@@ -54,10 +66,29 @@ namespace BatteryManager
             this.Hide();
         }
 
-        private void GlavToolStripMenuItem_Click(object sender, EventArgs e)
+        private void TableToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form2 form2 = new Form2();
-            form2.Show();
+            if (Controller.form2 == null)
+            {
+                Controller.form2 = new Form2();
+            }
+            Controller.ActiveForm = 2;
+            Controller.form2.Location = this.Location;
+            Controller.form2.Show();
+
+            this.Hide();
+        }
+
+        private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (Controller.form3 == null)
+            {
+                Controller.form3 = new Form3();
+            }
+            Controller.ActiveForm = 3;
+            Controller.form3.Location = this.Location;
+            Controller.form3.Show();
+
             this.Hide();
         }
     }
