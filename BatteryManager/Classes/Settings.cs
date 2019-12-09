@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace BatteryManager.Classes
 {
     [Serializable]
-    class Settings
+    static class Settings
     {
-        bool autoLoad;
-        bool autoChangePlan;
-        bool autoChangeLowLevelPlan;
+        public static bool autoLoad;
+        public static bool autoChangePlan;
+        public static bool autoChangeLowLevelPlan;
     }
 }

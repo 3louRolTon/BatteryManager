@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Management;
 using System.Text;
@@ -16,6 +17,7 @@ namespace BatteryManager
 {
     public partial class Form1 : Form
     {
+
         ManagementClass wmi = new ManagementClass("Win32_Battery");
         PowerStatus power = SystemInformation.PowerStatus;
         private PowerLineStatus lastStatus = SystemInformation.PowerStatus.PowerLineStatus;
@@ -31,6 +33,8 @@ namespace BatteryManager
 
             this.ShowInTaskbar = false;
 
+            Controller.form3 = new Form3();
+
             query = new ObjectQuery("Select * FROM Win32_Battery");
             searcher = new ManagementObjectSearcher(query);
 
@@ -43,26 +47,28 @@ namespace BatteryManager
         private void OnPowerModeChanged(object sender, PowerModeChangedEventArgs e)
         {
             var newStatus = SystemInformation.PowerStatus.PowerLineStatus;
-
             if (e.Mode == PowerModes.StatusChange && newStatus != lastStatus)
             {
-
-                switch (newStatus)
+                if (Settings.autoChangePlan)
                 {
-                    case PowerLineStatus.Online:
-                        DisablePowerSaving();
+                        switch (newStatus)
+                        {
+                            case PowerLineStatus.Online:
+                                DisablePowerSaving();
 
-                        lastStatus = newStatus;
-                        break;
-                    case PowerLineStatus.Offline:
-                        EnablePowerSaving();
+                                lastStatus = newStatus;
+                                break;
+                            case PowerLineStatus.Offline:
+                                EnablePowerSaving();
 
-                        lastStatus = newStatus;
-                        break;
-                    case PowerLineStatus.Unknown:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException();
+                                lastStatus = newStatus;
+                                break;
+                            case PowerLineStatus.Unknown:
+                                break;
+                            default:
+                                throw new ArgumentOutOfRangeException();
+                        }
+                    
                 }
             }
         }
@@ -108,14 +114,16 @@ namespace BatteryManager
         {
             this.notifyIcon1.ContextMenuStrip = new System.Windows.Forms.ContextMenuStrip();
             this.notifyIcon1.ContextMenuStrip.Items.Add("Show", null, this.MenuShow_Click);
-            this.notifyIcon1.ContextMenuStrip.Items.Add("Exit", null, this.MenuExit_Click);
+            this.notifyIcon1.ContextMenuStrip.Items.Add("Exit", null, this.MenuExit_ClickAsync);
         }
 
-        void MenuExit_Click(object sender, EventArgs e)
+        void MenuExit_ClickAsync(object sender, EventArgs e)
         {
+
             notifyIcon1.Visible = false;
             Application.Exit();
         }
+        
 
         void MenuShow_Click(object sender, EventArgs e)
         {
@@ -138,18 +146,18 @@ namespace BatteryManager
             this.Hide();
         }
 
-        private void TableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Controller.form2 == null)
-            {
-                Controller.form2 = new Form2();
-            }
-            Controller.ActiveForm = 2;
-            Controller.form2.Location = this.Location;
-            Controller.form2.Show();
+        //private void TableToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (Controller.form2 == null)
+        //    {
+        //        Controller.form2 = new Form2();
+        //    }
+        //    Controller.ActiveForm = 2;
+        //    Controller.form2.Location = this.Location;
+        //    Controller.form2.Show();
 
-            this.Hide();
-        }
+        //    this.Hide();
+        //}
 
         private void SettingsToolStripMenuItem_Click(object sender, EventArgs e)
         {

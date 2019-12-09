@@ -16,6 +16,9 @@ namespace BatteryManager
         public Form3()
         {
             InitializeComponent();
+
+            Settings.autoChangePlan = checkBox2.Checked;
+            Settings.autoChangeLowLevelPlan = checkBox3.Checked;
         }
 
         private void ExitButton_Click(object sender, EventArgs e)
@@ -36,17 +39,34 @@ namespace BatteryManager
             this.Hide();
         }
 
-        private void TableToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (Controller.form2 == null)
-            {
-                Controller.form2 = new Form2();
-            }
-            Controller.ActiveForm = 2;
-            Controller.form2.Location = this.Location;
-            Controller.form2.Show();
+        //private void TableToolStripMenuItem_Click(object sender, EventArgs e)
+        //{
+        //    if (Controller.form2 == null)
+        //    {
+        //        Controller.form2 = new Form2();
+        //    }
+        //    Controller.ActiveForm = 2;
+        //    Controller.form2.Location = this.Location;
+        //    Controller.form2.Show();
 
-            this.Hide();
+        //    this.Hide();
+        //}
+
+        private void checkBox2_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox2.CheckState == CheckState.Checked)
+            {
+                checkBox3.Enabled = false;
+                Settings.autoChangePlan = checkBox2.Checked;
+                Settings.autoChangeLowLevelPlan = checkBox3.Checked;
+            }
+            else
+            {
+                checkBox3.Enabled = true;
+                Settings.autoChangePlan = checkBox2.Checked;
+                Settings.autoChangeLowLevelPlan = checkBox3.Checked;
+            }
         }
+
     }
 }

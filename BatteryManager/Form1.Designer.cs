@@ -114,10 +114,10 @@
             // 
             // TableToolStripMenuItem
             // 
-            this.TableToolStripMenuItem.Name = "TableToolStripMenuItem";
-            this.TableToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.TableToolStripMenuItem.Text = "Таблица";
-            this.TableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
+            //this.TableToolStripMenuItem.Name = "TableToolStripMenuItem";
+            //this.TableToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
+            //this.TableToolStripMenuItem.Text = "Таблица";
+            //this.TableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
             // 
             // SettingsToolStripMenuItem
             // 

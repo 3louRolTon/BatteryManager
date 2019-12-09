@@ -64,9 +64,7 @@
             // TableToolStripMenuItem
             // 
             this.TableToolStripMenuItem.Name = "TableToolStripMenuItem";
-            this.TableToolStripMenuItem.Size = new System.Drawing.Size(80, 24);
-            this.TableToolStripMenuItem.Text = "Таблица";
-            this.TableToolStripMenuItem.Click += new System.EventHandler(this.TableToolStripMenuItem_Click);
+            this.TableToolStripMenuItem.Size = new System.Drawing.Size(12, 24);
             // 
             // SettingsToolStripMenuItem
             // 
@@ -94,6 +92,9 @@
             // checkBox1
             // 
             this.checkBox1.AutoSize = true;
+            this.checkBox1.Checked = true;
+            this.checkBox1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+            this.checkBox1.Enabled = false;
             this.checkBox1.Location = new System.Drawing.Point(30, 38);
             this.checkBox1.Name = "checkBox1";
             this.checkBox1.Size = new System.Drawing.Size(209, 21);
@@ -104,16 +105,20 @@
             // checkBox2
             // 
             this.checkBox2.AutoSize = true;
+            this.checkBox2.Checked = true;
+            this.checkBox2.CheckState = System.Windows.Forms.CheckState.Checked;
             this.checkBox2.Location = new System.Drawing.Point(30, 65);
             this.checkBox2.Name = "checkBox2";
             this.checkBox2.Size = new System.Drawing.Size(553, 21);
             this.checkBox2.TabIndex = 6;
             this.checkBox2.Text = "Автоматический переход в режим энергосбережения при отключении питания";
             this.checkBox2.UseVisualStyleBackColor = true;
+            this.checkBox2.CheckedChanged += new System.EventHandler(this.checkBox2_CheckedChanged);
             // 
             // checkBox3
             // 
             this.checkBox3.AutoSize = true;
+            this.checkBox3.Enabled = false;
             this.checkBox3.Location = new System.Drawing.Point(30, 92);
             this.checkBox3.Name = "checkBox3";
             this.checkBox3.Size = new System.Drawing.Size(562, 21);
@@ -134,6 +139,7 @@
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form3";
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Battery Manager";
             this.TopMost = true;

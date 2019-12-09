@@ -100,6 +100,7 @@
             this.MinimizeBox = false;
             this.Name = "Form2";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Battery Manager";
             this.TopMost = true;
